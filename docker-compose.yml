@@ -1,7 +1,9 @@
 version: "3.9"
 services:
   password_api:
+    container_name: password_api
     build: .
+    command: python manager.py db upgrade
     ports:
     - "5000:5000"
     hostname: "localhost:0.0.0.0"
@@ -10,6 +12,7 @@ services:
     depends_on:
       - database
   database:
+    container_name: password_db
     image: postgres:12-alpine
     volumes:
     - postgres_data:/var/lib/postgresql/data/
