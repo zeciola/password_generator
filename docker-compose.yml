@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  password_api:
+    build: .
+    ports:
+    - "5000:5000"
+    hostname: "localhost:0.0.0.0"
+    volumes:
+      - .:/usr/src/app/
+    depends_on:
+      - database
+  database:
+    image: postgres:12-alpine
+    volumes:
+    - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=KDc~*HtHw-XL*&45Kp:go(?0.i@MOL
+      - POSTGRES_DB=password_generator_db
+    ports:
+      - "5432:5432"
+    hostname: "localhost:postgres"
+    expose:
+      - 5432
+volumes:
+  postgres_data:
